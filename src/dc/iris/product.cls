@@ -11,7 +11,8 @@ Property MethodName As %String;
 
 Property SampleFile As %String;
 
-Property RenameMask As %String;
+/// Filename may avoid processing early before FileRename
+Property WorkFile As %String;
 
 Property WorkPath As %String;
 
@@ -162,51 +163,49 @@ ClassMethod GetFileRename(
 	Quit tFileRename
 }
 
-ClassMethod GetSampleFile() As %String
-{
-	Quit "/ICS/testfiles/CCS_12312019065821_2019-12-31.txt"
-}
-
 ClassMethod GetWorkPath() As %String
 {
 	Quit "/tmp/"
 }
 
-ClassMethod MakeFile() As %Status
+ClassMethod MakeFile(pProduct) As %Status
 {
 	Set tSC = $$$OK
-	Set tSampleFile = ..GetSampleFile()
-	Set tWorkPath = ..GetWorkPath()
-	Set tRenameMask = ""
+	Set oProduct = $Get(pProduct)
+	If ($IsObject(oProduct) = 0) {
+		Set oProduct = ##class(dc.iris.product).%OpenId(pProduct)
+	}
+	If ($IsObject(oProduct) = 0) {
+		Set tSC = $$$ERROR($$$GeneralError,"No product defined")
+		Quit tSC
+	}
+	Set tSampleFile = oProduct.SampleFile
 	Set tExist = ##class(%File).Exists(tSampleFile)
 	If (tExist = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,tSampleFile_" does not exist")
 		Quit tSC
 	}
+	Set tWorkFile = oProduct.WorkFile
+	Set tWorkPath = oProduct.WorkPath
 	Set tExist = ##class(%File).DirectoryExists(tWorkPath)
 	If (tExist = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,tWorkPath_" is not a directory")
 		Quit tSC
 	}
 	Set tSampleFilename = ##class(%File).GetFilename(tSampleFile)
-	Set tTarget = tWorkPath_tSampleFilename
+	If (tWorkFile = "") Set tWorkFile = tWorkPath_tSampleFilename
 	/*
-	If (tSampleFile = tTarget) {
-		Set tTarget = tWorkPath_"COPY_"_tSampleFilename
+	If (tSampleFile = tWorkFile) {
+		Set tWorkFile = tWorkPath_"COPY_"_tSampleFilename
 	}
 	*/
-	Set tBool = ##class(%File).CopyFile(tSampleFile,tTarget)
+	Set tBool = ##class(%File).CopyFile(tSampleFile,tWorkFile)
 	If (tBool = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to copy file")
 		Quit tSC
 	}
-	Set x = $Length(tSampleFilename,".")
-	Set tExtension = $Piece(tSampleFilename,".",x)
-	Set tPrefix = $Piece(tSampleFilename,".",1,(x - 1))
-	Set tSource = tTarget
-	//Set tTarget = tPrefix_tRenameMask_"."_tExtension
-	Set tTarget = ..GetFileRename(tSampleFilename)
-	Set tRename = ##class(%File).Rename(tSource,tTarget)
+	Set tTarget = ..GetFileRename(tSampleFilename,,,tWorkPath)
+	Set tRename = ##class(%File).Rename(tWorkFile,tTarget)
 	If (tRename = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to rename file")
 		Quit tSC
