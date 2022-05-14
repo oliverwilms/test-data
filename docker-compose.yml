@@ -7,7 +7,7 @@ services:
     restart: always
     ports: 
       - 1972
-      - 55037:52773
+      - 57700:52773
       - 53773
     volumes:
       - ./:/irisrun/repo
