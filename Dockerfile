@@ -11,7 +11,7 @@ USER ${ISC_PACKAGE_MGRUSER}
 COPY  data data
 COPY  python python
 COPY  src src
-COPY module.xml module.xml
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} module.xml module.xml
 COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} iris.script iris.script
 
 RUN iris start IRIS \
