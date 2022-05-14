@@ -213,4 +213,37 @@ ClassMethod MakeFile(pProduct) As %Status
 	Quit tSC
 }
 
+Storage Default
+{
+<Data name="productDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>Name</Value>
+</Value>
+<Value name="3">
+<Value>ClassName</Value>
+</Value>
+<Value name="4">
+<Value>MethodName</Value>
+</Value>
+<Value name="5">
+<Value>SampleFile</Value>
+</Value>
+<Value name="6">
+<Value>WorkFile</Value>
+</Value>
+<Value name="7">
+<Value>WorkPath</Value>
+</Value>
+</Data>
+<DataLocation>^dc.iris.productD</DataLocation>
+<DefaultData>productDefaultData</DefaultData>
+<IdLocation>^dc.iris.productD</IdLocation>
+<IndexLocation>^dc.iris.productI</IndexLocation>
+<StreamLocation>^dc.iris.productS</StreamLocation>
+<Type>%Storage.Persistent</Type>
+}
+
 }
