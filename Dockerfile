@@ -12,7 +12,7 @@ COPY  data data
 COPY  python python
 COPY  src src
 COPY module.xml module.xml
-COPY iris.script iris.script
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} iris.script iris.script
 
 RUN iris start IRIS \
 	&& iris session IRIS < iris.script \
