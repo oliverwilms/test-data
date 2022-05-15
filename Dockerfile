@@ -2,7 +2,10 @@ ARG IMAGE=intersystemsdc/iris-community
 FROM $IMAGE
 
 USER root   
-        
+
+WORKDIR /opt/unittests
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/unittests
+
 WORKDIR /opt/irisbuild
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
 USER ${ISC_PACKAGE_MGRUSER}
