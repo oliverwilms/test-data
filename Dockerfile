@@ -6,7 +6,7 @@ USER root
 WORKDIR /opt/unittests
 RUN mkdir /opt/unittests/test-data
 RUN chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/unittests
-COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} src/dc/iris/test.cls test-data/test.cls
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} src/dc/iris/tests.cls test-data/tests.cls
 
 WORKDIR /opt/irisbuild
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
