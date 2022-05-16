@@ -7,8 +7,8 @@ ClassMethod DefineProduct() As %Status
 	Set oProduct = ##class(dc.iris.product).%New()
 	Set oProduct.ClassName = "dc.iris.product"
 	Set oProduct.MethodName = "MakeFile"
-	Set oProduct.SampleFile = "/ICS/testfiles/CCS_12312019065821_2019-12-31.txt"
-	Set oProduct.Name = "CCS"
+	Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
+	Set oProduct.Name = "Demo"
 	Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
 	Set oProduct.WorkPath = ##class(%File).GetDirectory(oProduct.WorkFile)
 	Set tSC = oProduct.%Save()
@@ -37,7 +37,7 @@ ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
 	Set tClassMethod = oProduct.MethodName
 	For tCount = 1:1:pQuantity {
 		Write tCount,!
-    Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct)
+		Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct)
 		Continue
 	}
 	Set oProduct = ""
