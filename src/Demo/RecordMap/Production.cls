@@ -12,7 +12,6 @@ XData ProductionDefinition
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
     <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
     <Setting Target="Adapter" Name="FileSpec">RecordMap_Delimited_*</Setting>
-    <Setting Target="Adapter" Name="ArchivePath">C:\Practice\out</Setting>
   </Item>
   <Item Name="FixedWidth.RecordMap.FileOperation" Category="" ClassName="EnsLib.RecordMap.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="File operation to write data out into fixed width records" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Filename">RecordMap_FixedWidth_Output.txt</Setting>
