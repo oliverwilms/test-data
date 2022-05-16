@@ -10,7 +10,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="RecordMap">Demo.RecordMap.Map.Delimited</Setting>
     <Setting Target="Host" Name="TargetConfigNames">FixedWidth.RecordMap.FileOperation</Setting>
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
-    <Setting Target="Adapter" Name="FilePath">C:\Practice\in\</Setting>
+    <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
     <Setting Target="Adapter" Name="FileSpec">RecordMap_Delimited_*</Setting>
     <Setting Target="Adapter" Name="ArchivePath">C:\Practice\out</Setting>
   </Item>
@@ -18,7 +18,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="Filename">RecordMap_FixedWidth_Output.txt</Setting>
     <Setting Target="Host" Name="RecordMap">Demo.RecordMap.Map.FixedWidth</Setting>
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
-    <Setting Target="Adapter" Name="FilePath">C:\Practice\out\</Setting>
+    <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
   </Item>
 </Production>
 }
