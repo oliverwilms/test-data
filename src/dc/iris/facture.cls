@@ -11,6 +11,7 @@ ClassMethod DefineProduct() As %Status
 	Set oProduct.Name = "Demo"
 	Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
 	Set oProduct.WorkPath = ##class(%File).GetDirectory(oProduct.WorkFile)
+	Set oProduct.TargetPath = "/opt/transform/practice/"
 	Set tSC = oProduct.%Save()
 	Quit tSC
 }
