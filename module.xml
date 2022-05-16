@@ -7,6 +7,7 @@
       <Description>test-data</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
+      <Resource Name="Demo.RecordMap.PKG"/>
       <Resource Name="dc.iris.PKG"/>
       <Resource Name="dc.python.PKG"/>
       <FileCopy Name="python/" Target="${mgrdir}python/"/>
