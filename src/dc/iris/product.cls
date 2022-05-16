@@ -194,6 +194,13 @@ ClassMethod MakeFile(pProduct) As %Status
 		Set tSC = $$$ERROR($$$GeneralError,tWorkPath_" is not a directory")
 		Quit tSC
 	}
+	Set tTargetPath = oProduct.TargetPath
+	If (tTargetPath = "") Set tTargetPath = tWorkPath
+	Set tExist = ##class(%File).DirectoryExists(tTargetPath)
+	If (tExist = 0) {
+		Set tSC = $$$ERROR($$$GeneralError,tTargetPath_" is not a directory")
+		Quit tSC
+	}
 	Set tSampleFilename = ##class(%File).GetFilename(tSampleFile)
 	If (tWorkFile = "") Set tWorkFile = tWorkPath_tSampleFilename
 	/*
@@ -206,7 +213,7 @@ ClassMethod MakeFile(pProduct) As %Status
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to copy file")
 		Quit tSC
 	}
-	Set tTarget = ..GetFileRename(tSampleFilename,,,tWorkPath)
+	Set tTarget = ..GetFileRename(tSampleFilename,,,tTargetPath)
 	Set tRename = ##class(%File).Rename(tWorkFile,tTarget)
 	If (tRename = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to rename file")
