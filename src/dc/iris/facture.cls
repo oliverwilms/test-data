@@ -45,4 +45,15 @@ ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
 	Quit $$$OK
 }
 
+ClassMethod TestProductDefined() As %Status
+{
+	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
+	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
+	If ($IsObject(oProduct) = 0) {
+		Set tSC = ##class(dc.iris.facture).DefineProduct()
+		Quit tSC
+	}
+	Quit $$$OK
+}
+
 }
