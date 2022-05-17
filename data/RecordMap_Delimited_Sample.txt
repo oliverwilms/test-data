@@ -1,2 +1,0 @@
-1;39;01/28/1972;Red;Smith,Robert E;555-55-5555;Allen;TX;10232 Robin Lane;75001
-2;38;10/04/1976;Purple;Allen,Fiona A;555-44-5555;Fort Worth;TX;4567 Thoreau Street;76123
