@@ -1,10 +1,13 @@
 Class dc.iris.tests Extends %UnitTest.TestCase
 {
 
-Method TestAdd()
+Method TestDemo()
 {
- do $$$AssertEquals(##class(MyPackage.TestMe).Add(2,2),4, "Test Add(2,2)=4")
- do $$$AssertNotEquals(##class(MyPackage.TestMe).Add(2,2),5,"Test Add(2,2)'=5")
+	Set tSC = ##class(dc.iris.facture).TestProductDefined()
+	Do $$$AssertEquals(tSC,1, "TestProductDefined")
+	Set tSC = ##class(dc.iris.facture).MakeFiles()
+	Do $$$AssertEquals(tSC,1, "MakeFiles")
+ //do $$$AssertNotEquals(##class(MyPackage.TestMe).Add(2,2),5,"Test Add(2,2)'=5")
 }
 
 }
