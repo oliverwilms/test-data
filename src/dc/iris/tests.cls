@@ -10,7 +10,7 @@ Method TestDemo()
 	Set tCountFixedBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
 	Set tSC = ##class(dc.iris.facture).TestProductDefined()
 	Do $$$AssertEquals(tSC,1, "TestProductDefined")
-	Set tMakeFilesQuantity = 1
+	Set tMakeFilesQuantity = 2
 	Set tSC = ##class(dc.iris.facture).MakeFiles(tMakeFilesQuantity)
 	Do $$$AssertEquals(tSC,1, "MakeFiles")
 	// Allow time to transform file(s)
