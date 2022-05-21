@@ -44,7 +44,7 @@ The first command needs to be run once
 USER>Set ^UnitTestRoot="/opt/unittests"
 ```
 
-Another example shows the work of a custom lib sample.py which is installed with repo or ZPM. It has function hello which returns string "world":
+This app utilizes a specific directory for UnitTests
 ```
 USER>Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
