@@ -58,7 +58,7 @@ for i in $(seq -f "%04g" 1 ${NUMBER_OF_TEST_TO_CREATE})
 do
 
 # NEW_TRANSACTION_NUMBER=${TRANSACTION_NUMBER:0:7}$i
-  NEW_TRANSACTION_NUMBER="DE"$(random_number 9 1000000000)$i
+  NEW_TRANSACTION_NUMBER=$(random_number 7 10000000)$i
   RAND_TIME=$(random_number 2 24)$(random_number 2 60)$(random_number 2 60)
 
   sed "s/$TRANSACTION_NUMBER/$NEW_TRANSACTION_NUMBER/g; \
