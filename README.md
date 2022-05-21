@@ -44,7 +44,7 @@ The first command needs to be run once
 USER>Set ^UnitTestRoot="/opt/unittests"
 ```
 
-This app utilizes a specific directory for UnitTests
+This app utilizes a specific directory for UnitTests. The directory name, in this case test-data, is the name for a suite of tests and is also a child of the directory specified by ^UnitTestRoot. Running Manager.RunTest(“test-data”) runs all of the tests stored in the test-data directory.
 ```
 USER>Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
