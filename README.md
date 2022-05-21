@@ -45,6 +45,7 @@ USER>Set ^UnitTestRoot="/opt/unittests"
 ```
 
 This app utilizes a specific directory for UnitTests. The directory name, in this case test-data, is the name for a suite of tests and is also a child of the directory specified by ^UnitTestRoot. Running Manager.RunTest(“test-data”) runs all of the tests stored in the test-data directory.
+Since we are using .cls files rather than XML files, we must supply the /loadudl qualifier to RunTest.
 ```
 USER>Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
