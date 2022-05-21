@@ -16,6 +16,29 @@ ClassMethod DefineProduct() As %Status
 	Quit tSC
 }
 
+ClassMethod DefineProductScript(
+	pName As %String = "Demo2",
+	pDebug As %Integer = 0) As %Status
+{
+	Set pQuery = "SELECT ID from dc_iris.product WHERE Name = '?'"
+	Set pQuery = $Replace(pQuery,"?",pName)
+	Write:pDebug pQuery,!
+	Set tSC = ##class(dc.iris.util).ExecuteQueryOneValue(pQuery,.oProduct)
+	Write:pDebug tSC,!
+	Set oProduct = ##class(dc.iris.product).%OpenId(oProduct)
+	If ($IsObject(oProduct) = 0) Set oProduct = ##class(dc.iris.product).%New()
+	Do:pDebug $System.OBJ.Dump(oProduct)
+	Set oProduct.ClassName = "dc.iris.product"
+	Set oProduct.MethodName = "RunScript"
+	//Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
+	Set oProduct.Name = pName
+	//Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
+	//Set oProduct.WorkPath = ##class(%File).GetDirectory(oProduct.WorkFile)
+	//Set oProduct.TargetPath = "/opt/transform/practice/"
+	Set tSC = oProduct.%Save()
+	Quit tSC
+}
+
 ClassMethod GetProductId() As %String
 {
 	Quit 1
