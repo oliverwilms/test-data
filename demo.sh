@@ -25,3 +25,13 @@ else
   NEW_DD2_DATE="DD2^"${NEW_TRANSACTION_DATE:4:2}"^"${NEW_TRANSACTION_DATE:6:2}"^"${NEW_TRANSACTION_DATE:2:2}
 
 fi
+
+if [ -z "$3" ]; then
+
+  OUTPUT_FOLDER="."
+
+else
+
+  OUTPUT_FOLDER=$3
+
+fi
