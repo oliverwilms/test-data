@@ -44,3 +44,28 @@ else
   TEMPLATE_FOLDER=$4
 
 fi
+
+filename=$4"template_demo.txt"
+TRANSACTION_NUMBER="$(awk -F"^" 'NR==1 {print $9}' "$filename")"
+TRANSACTION_DATE="$(awk -F"^" 'NR==1 {print $10}' "$filename")"
+TRANSACTION_TIME="$(awk -F"^" 'NR==1 {print $11}' "$filename")"
+
+DD2_DATE="$(awk -F"^" 'NR==3 {print $1"^"$2"^"$3"^"$4}' "$filename")"
+
+### loop to create number of files
+
+for i in $(seq -f "%04g" 1 ${NUMBER_OF_TEST_TO_CREATE})
+do
+
+# NEW_TRANSACTION_NUMBER=${TRANSACTION_NUMBER:0:7}$i
+  NEW_TRANSACTION_NUMBER="DE"$(random_number 9 1000000000)$i
+  RAND_TIME=$(random_number 2 24)$(random_number 2 60)$(random_number 2 60)
+
+  sed "s/$TRANSACTION_NUMBER/$NEW_TRANSACTION_NUMBER/g; \
+       s/$TRANSACTION_DATE/$NEW_TRANSACTION_DATE/g; \
+       s/$DD2_DATE/$NEW_DD2_DATE/g; \
+       s/$TRANSACTION_TIME/$RAND_TIME/g;" \
+      $filename > \
+      $OUTPUT_FOLDER"/DEMO-"$NEW_TRANSACTION_NUMBER
+
+done
