@@ -28,7 +28,7 @@ fi
 
 if [ -z "$3" ]; then
 
-  OUTPUT_FOLDER="."
+  OUTPUT_FOLDER="./"
 
 else
 
@@ -66,6 +66,6 @@ do
        s/$DD2_DATE/$NEW_DD2_DATE/g; \
        s/$TRANSACTION_TIME/$RAND_TIME/g;" \
       $filename > \
-      $OUTPUT_FOLDER"/DEMO-"$NEW_TRANSACTION_NUMBER
+      $OUTPUT_FOLDER"DEMO-"$NEW_TRANSACTION_NUMBER
 
 done
