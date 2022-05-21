@@ -35,3 +35,12 @@ else
   OUTPUT_FOLDER=$3
 
 fi
+
+if [ -z "$4" ]; then
+  TEMPLATE_FOLDER="./"
+
+else
+
+  TEMPLATE_FOLDER=$4
+
+fi
