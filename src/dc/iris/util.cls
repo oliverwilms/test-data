@@ -1,7 +1,26 @@
 Class dc.iris.util
 {
 
-ClassMethod FilesCount(pFilePath As %String = "", pWildcards As %String = "*", pIncludeDirs As %Boolean = 0) As %Integer
+ClassMethod ExecuteQueryOneValue(
+	pQuery As %String,
+	ByRef pResult As %String) As %Status
+{
+	Set pResult = ""
+	Set rs = ##class(%ResultSet).%New()
+	Set tSC = rs.Prepare(pQuery)
+	If $$$ISOK(tSC) {
+		Set tSC = rs.Execute()
+		If $$$ISOK(tSC), rs.Next() Set pResult = rs.GetData(1)
+	}
+	Do rs.Close()
+	Set rs = ""
+	Quit tSC
+}
+
+ClassMethod FilesCount(
+	pFilePath As %String = "",
+	pWildcards As %String = "*",
+	pIncludeDirs As %Boolean = 0) As %Integer
 {
 	Set $ZT="Trap",tSC=$$$OK
 	do {
@@ -22,7 +41,11 @@ Trap
 /// Get a list of files in the directory configured by FilePath.
 /// The filenames are returned in a %ListOfDataTypes object. Each entry in the list is
 /// a semicolon-separated string containing: Filename;Type;Size;DateCreated;DateModified;FullPathName
-ClassMethod FileSet(Output pFileList As %ListOfDataTypes, pFilePath As %String = "", pWildcards As %String = "*", pIncludeDirs As %Boolean = 0) As %Status
+ClassMethod FileSet(
+	Output pFileList As %ListOfDataTypes,
+	pFilePath As %String = "",
+	pWildcards As %String = "*",
+	pIncludeDirs As %Boolean = 0) As %Status
 {
 	Set $ZT="Trap",tSC=$$$OK
 	do {
