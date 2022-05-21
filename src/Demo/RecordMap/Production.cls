@@ -8,10 +8,12 @@ XData ProductionDefinition
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="Delimited.RecordMap.FileService" Category="" ClassName="EnsLib.RecordMap.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="File service to process files containing delimited records" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="RecordMap">Demo.RecordMap.Map.Delimited</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">FixedWidth.RecordMap.FileOperation</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">BPL</Setting>
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
     <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
     <Setting Target="Adapter" Name="FileSpec">RecordMap_Delimited_*</Setting>
+  </Item>
+  <Item Name="BPL" Category="" ClassName="dc.iris.bpl" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
   <Item Name="FixedWidth.RecordMap.FileOperation" Category="" ClassName="EnsLib.RecordMap.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="File operation to write data out into fixed width records" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Filename">RecordMap_FixedWidth_Output_%Q.txt</Setting>
