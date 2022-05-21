@@ -222,6 +222,43 @@ ClassMethod MakeFile(pProduct) As %Status
 	Quit tSC
 }
 
+ClassMethod MakeFiles(
+	pProduct,
+	pQuantity) As %Status
+{
+	Set tSC = $$$OK
+	Set pQuantity = $Get(pQuantity,1)
+	For ii = 1:1:pQuantity {
+		Set tSC = ..MakeFile($Get(pProduct))
+	}
+	Quit tSC
+}
+
+ClassMethod RunScript(pProduct) As %Status
+{
+	Set tSC = $$$OK
+	Set oProduct = $Get(pProduct)
+	If ($IsObject(oProduct) = 0) {
+		Set oProduct = ##class(dc.iris.product).%OpenId(oProduct)
+	}
+	If ($IsObject(oProduct) = 0) {
+		Set tSC = $$$ERROR($$$GeneralError,"No product defined")
+		Quit tSC
+	}
+	Set pCmd = "/irisrun/repo/demo.sh"
+	Set pNumberOfFiles = 1
+	Set pRandom = "random"
+	Set pOutput = "/opt/transform/practice/"
+	Set pTemplate = "/usr/irissys/mgr/data/"
+	Set args=4
+ 	Set args(1) = pNumberOfFiles
+	Set args(2) = pRandom
+ 	Set args(3) = pOutput
+ 	Set args(4) = pTemplate
+	Set tReturn = $ZF(-100,"/SHELL",pCmd,.args)
+	Quit tSC
+}
+
 Storage Default
 {
 <Data name="productDefaultData">
@@ -252,8 +289,48 @@ Storage Default
 </Data>
 <DataLocation>^dc.iris.productD</DataLocation>
 <DefaultData>productDefaultData</DefaultData>
+<ExtentSize>1</ExtentSize>
 <IdLocation>^dc.iris.productD</IdLocation>
 <IndexLocation>^dc.iris.productI</IndexLocation>
+<Property name="%%CLASSNAME">
+<AverageFieldSize>2</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="%%ID">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>1</Selectivity>
+</Property>
+<Property name="ClassName">
+<AverageFieldSize>17</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="MethodName">
+<AverageFieldSize>10</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="Name">
+<AverageFieldSize>6</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="SampleFile">
+<AverageFieldSize>52</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="TargetPath">
+<AverageFieldSize>26</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="WorkFile">
+<AverageFieldSize>20</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="WorkPath">
+<AverageFieldSize>7</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
 <StreamLocation>^dc.iris.productS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
