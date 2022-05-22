@@ -213,7 +213,8 @@ ClassMethod MakeFile(pProduct) As %Status
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to copy file")
 		Quit tSC
 	}
-	Set tTarget = ..GetFileRename(tSampleFilename,,,tTargetPath)
+	Set tSpec = "%f_%Q%!+(_a1)"
+	Set tTarget = ..GetFileRename(tSampleFilename,tSpec,,tTargetPath)
 	Set tRename = ##class(%File).Rename(tWorkFile,tTarget)
 	If (tRename = 0) {
 		Set tSC = $$$ERROR($$$GeneralError,"Unable to rename file")
