@@ -17,12 +17,29 @@ ClassMethod Today() As %Status
   Return sc
 }
 
-ClassMethod Hello() As %Status
+ClassMethod MaxQuantity() As %Status
 {
   Set sc = $$$OK
-  Set sm = ##class(%SYS.Python).Import("sample")
-  write sm.hello()
-  Return sc
+  Set td = ##class(%SYS.Python).Import("test-data")
+  Set file = $System.Util.ManagerDirectory()_"data/QuantityOnHandSync.csv"
+  Set maxq = td.maxqty(file)
+  Return maxq
+}
+
+ClassMethod Source() As %Status
+{
+  Set sc = $$$OK
+  Set td = ##class(%SYS.Python).Import("test-data")
+  Set source = td.source()
+  Return source
+}
+
+ClassMethod Target() As %Status
+{
+  Set sc = $$$OK
+  Set td = ##class(%SYS.Python).Import("test-data")
+  Set target = td.target()
+  Return target
 }
 
 /// Titanic
