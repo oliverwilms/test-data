@@ -23,17 +23,12 @@ Method TestDemo()
 	Set tSC = ##class(dc.iris.facture).MakeFiles(tMakeFilesQuantity)
 	Do $$$AssertEquals(tSC,1, "MakeFiles")
 	// Allow time to transform file(s)
-	Hang 1
+	// Call Interval = 5
+	// File Access Timeout = 2
+	Hang 15
 	Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
 	Set tCountFixedAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
-	Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 1 second.")
-	Set test = tCountFixedBefore + tMakeFilesQuantity
-	If (test '= tCountFixedAfter) {
-		Hang 1
-		Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
-		Set tCountFixedAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
-		Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 2 seconds.")
-	}
+	Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 15 seconds.")
 	Do $$$AssertEquals(tCountFixedAfter,(tCountFixedBefore+tMakeFilesQuantity),"FixedWidth Files count")
 }
 
