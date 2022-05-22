@@ -16,7 +16,7 @@ XData ProductionDefinition
   <Item Name="BPL" Category="" ClassName="dc.iris.bpl" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
   <Item Name="FixedWidth.RecordMap.FileOperation" Category="" ClassName="EnsLib.RecordMap.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="File operation to write data out into fixed width records" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Filename">RecordMap_FixedWidth_Output_%Q.txt</Setting>
+    <Setting Target="Host" Name="Filename">RecordMap_FixedWidth_Output_from_%f</Setting>
     <Setting Target="Host" Name="RecordMap">Demo.RecordMap.Map.FixedWidth</Setting>
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
     <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
