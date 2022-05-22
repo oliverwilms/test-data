@@ -26,7 +26,14 @@ Method TestDemo()
 	Hang 1
 	Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
 	Set tCountFixedAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
-	Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after.")
+	Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 1 second.")
+	Set test = tCountFixedBefore + tMakeFilesQuantity
+	If (test '= tCountFixedAfter) {
+		Hang 1
+		Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
+		Set tCountFixedAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
+		Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 2 seconds.")
+	}
 	Do $$$AssertEquals(tCountFixedAfter,(tCountFixedBefore+tMakeFilesQuantity),"FixedWidth Files count")
 }
 
@@ -35,14 +42,17 @@ Method TestDemo2()
 	Set tDir = "/opt/transform/practice"
 	Set tFilesDemo2 = "DE*"
 	Set tCountBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesDemo2)
+	Do ..LogMessage(tCountBefore_" "_tFilesDemo2_" files before.")
 	Set tSC = ##class(dc.iris.facture).TestProductDefined()
 	Do $$$AssertEquals(tSC,1, "TestProductDefined")
 	Set tMakeFilesQuantity = 2
+	Do ..LogMessage("tMakeFilesQuantity = "_tMakeFilesQuantity)
 	Set tSC = ##class(dc.iris.facture).Manufacture(2,tMakeFilesQuantity)
 	Do $$$AssertEquals(tSC,1, "Manufacture")
 	// Allow time to transform file(s)
 	Hang 1
 	Set tCountAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDemo2)
+	Do ..LogMessage(tCountAfter_" "_tFilesDemo2_" files after 1 second.")
 	Do $$$AssertEquals(tCountAfter,(tCountBefore+tMakeFilesQuantity),"Files count")
 }
 
