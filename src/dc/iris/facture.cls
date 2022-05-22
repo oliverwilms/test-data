@@ -49,7 +49,9 @@ ClassMethod GetWorkPath() As %String
 	Quit "/tmp/"
 }
 
-ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
+ClassMethod MakeFiles(
+	pQuantity As %Integer = 1,
+	pDebug As %Integer = 0) As %Status
 {
 	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
 	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
@@ -60,7 +62,7 @@ ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
 	Set tClassName = oProduct.ClassName
 	Set tClassMethod = oProduct.MethodName
 	For tCount = 1:1:pQuantity {
-		Write tCount,!
+		Write:pDebug tCount,!
 		Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct)
 		Continue
 	}
@@ -70,7 +72,8 @@ ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
 
 ClassMethod Manufacture(
 	pProductId As %String = 1,
-	pQuantity As %Integer = 1) As %Status
+	pQuantity As %Integer = 1,
+	pDebug As %Integer = 0) As %Status
 {
 	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
 	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
@@ -81,7 +84,7 @@ ClassMethod Manufacture(
 	Set tClassName = oProduct.ClassName
 	Set tClassMethod = oProduct.MethodName
 	For tCount = 1:1:pQuantity {
-		Write tCount,!
+		Write:pDebug tCount,!
 		Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
 		Continue
 	}
