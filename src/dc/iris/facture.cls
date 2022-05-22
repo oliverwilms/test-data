@@ -68,7 +68,35 @@ ClassMethod MakeFiles(pQuantity As %Integer = 1) As %Status
 	Quit $$$OK
 }
 
+ClassMethod Manufacture(
+	pProductId As %String = 1,
+	pQuantity As %Integer = 1) As %Status
+{
+	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
+	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
+	If ($IsObject(oProduct) = 0) {
+		Set tSC = $$$ERROR($$$GeneralError,"No product defined")
+		Quit tSC
+	}
+	Set tClassName = oProduct.ClassName
+	Set tClassMethod = oProduct.MethodName
+	For tCount = 1:1:pQuantity {
+		Write tCount,!
+		Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
+		Continue
+	}
+	Set oProduct = ""
+	Quit $$$OK
+}
+
 ClassMethod TestProductDefined() As %Status
+{
+	Set tSC = ..TestProductDefined1()
+	Set tSC = ..TestProductDefined2()
+	Quit $$$OK
+}
+
+ClassMethod TestProductDefined1() As %Status
 {
 	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
 	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
@@ -77,6 +105,12 @@ ClassMethod TestProductDefined() As %Status
 		Quit tSC
 	}
 	Quit $$$OK
+}
+
+ClassMethod TestProductDefined2() As %Status
+{
+	Set tSC = ..DefineProductScript()
+	Quit tSC
 }
 
 }
