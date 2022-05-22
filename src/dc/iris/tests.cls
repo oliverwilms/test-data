@@ -1,6 +1,13 @@
 Class dc.iris.tests Extends %UnitTest.TestCase
 {
 
+ClassMethod Go() As %Status
+{
+	Set ^UnitTestRoot="/opt/unittests"
+	Set tSC = ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
+	Quit tSC
+}
+
 Method TestDemo()
 {
 	Set tDir = "/opt/transform/practice"
