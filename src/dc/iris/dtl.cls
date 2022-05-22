@@ -11,6 +11,7 @@ XData DTL [ XMLNamespace = "http://www.intersystems.com/dtl" ]
 {
 <transform sourceClass='Demo.RecordMap.Map.Delimited.Record' targetClass='Demo.RecordMap.Map.FixedWidth.Record' create='new' language='objectscript' >
 <annotation>Create new fixed width record with unique SSN from delimited record</annotation>
+<assign value='source.%Source' property='target.%Source' action='set' />
 <assign value='source.PersonID' property='target.PersonID' action='set' />
 <assign value='source.FirstName' property='target.FirstName' action='set' />
 <assign value='source.MiddleInitial' property='target.MiddleInitial' action='set' />
