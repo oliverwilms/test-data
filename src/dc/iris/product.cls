@@ -234,7 +234,9 @@ ClassMethod MakeFiles(
 	Quit tSC
 }
 
-ClassMethod RunScript(pProduct) As %Status
+ClassMethod RunScript(
+	pProduct,
+	pQuantity) As %Status
 {
 	Set tSC = $$$OK
 	Set oProduct = $Get(pProduct)
@@ -246,7 +248,7 @@ ClassMethod RunScript(pProduct) As %Status
 		Quit tSC
 	}
 	Set pCmd = "/irisrun/repo/demo.sh"
-	Set pNumberOfFiles = 1
+	Set pNumberOfFiles = $Get(pQuantity,1)
 	Set pRandom = "random"
 	Set pOutput = "/opt/transform/practice/"
 	Set pTemplate = "/usr/irissys/mgr/data/"
