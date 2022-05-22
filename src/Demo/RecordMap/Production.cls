@@ -3,7 +3,7 @@ Class Demo.RecordMap.Production Extends Ens.Production [ ProcedureBlock ]
 
 XData ProductionDefinition
 {
-<Production Name="Demo.RecordMap.Production" LogGeneralTraceEvents="false">
+<Production Name="Demo.RecordMap.Production" LogGeneralTraceEvents="true">
   <Description>Sample Production to illustrate a simple input/output transformation using generated RecordMaps. NOTE: The source file, RecordMap.Delimited.Input.txt, and a sample output file, RecordMap.Delimited.Output.txt, should be located in [install_dir]/dev/RecordMap/.</Description>
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="Delimited.RecordMap.FileService" Category="" ClassName="EnsLib.RecordMap.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="File service to process files containing delimited records" LogTraceEvents="false" Schedule="">
@@ -20,6 +20,15 @@ XData ProductionDefinition
     <Setting Target="Host" Name="RecordMap">Demo.RecordMap.Map.FixedWidth</Setting>
     <Setting Target="Host" Name="InactivityTimeout">0</Setting>
     <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
+  </Item>
+  <Item Name="Demo2 File Service" Category="" ClassName="EnsLib.File.PassthroughService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
+    <Setting Target="Adapter" Name="FileSpec">DE*</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">Stream Process</Setting>
+  </Item>
+  <Item Name="Passthrough Operation" Category="" ClassName="EnsLib.File.PassthroughOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="Stream Process" Category="" ClassName="dc.iris.streamProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
 </Production>
 }
