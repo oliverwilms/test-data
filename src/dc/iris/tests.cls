@@ -13,7 +13,7 @@ Method TestDemo()
 	Set tDir = "/opt/transform/practice"
 	Set tFilesDelimited = "RecordMap_Delimited_*"
 	Set tFilesFixedWidth = "RecordMap_FixedWidth*"
-	Set tCountDelimBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
+	//Set tCountDelimBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
 	Set tCountFixedBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
 	Do ..LogMessage(tCountFixedBefore_" "_tFilesFixedWidth_" files before.")
 	Set tSC = ##class(dc.iris.facture).TestProductDefined()
@@ -26,7 +26,7 @@ Method TestDemo()
 	// Call Interval = 5
 	// File Access Timeout = 2
 	Hang 15
-	Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
+	//Set tCountDelimAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDelimited)
 	Set tCountFixedAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesFixedWidth)
 	Do ..LogMessage(tCountFixedAfter_" "_tFilesFixedWidth_" files after 15 seconds.")
 	Do $$$AssertEquals(tCountFixedAfter,(tCountFixedBefore+tMakeFilesQuantity),"FixedWidth Files count")
