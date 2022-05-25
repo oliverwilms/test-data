@@ -75,6 +75,7 @@ ClassMethod Manufacture(
 	pQuantity As %Integer = 1,
 	pDebug As %Integer = 0) As %Status
 {
+	Set tSC = $$$OK
 	If ($Get(pProductId) = "") Set pProductId = ..GetProductId()
 	Set oProduct = ##class(dc.iris.product).%OpenId(pProductId)
 	If ($IsObject(oProduct) = 0) {
@@ -85,18 +86,18 @@ ClassMethod Manufacture(
 	Set tClassMethod = oProduct.MethodName
 	For tCount = 1:1:pQuantity {
 		Write:pDebug tCount,!
-		Set tReturn = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
+		Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
 		Continue
 	}
 	Set oProduct = ""
-	Quit $$$OK
+	Quit tSC
 }
 
 ClassMethod TestProductDefined() As %Status
 {
 	Set tSC = ..TestProductDefined1()
 	Set tSC = ..TestProductDefined2()
-	Quit $$$OK
+	Quit tSC
 }
 
 ClassMethod TestProductDefined1() As %Status
