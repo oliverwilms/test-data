@@ -27,6 +27,8 @@ XData ProductionDefinition
     <Setting Target="Host" Name="TargetConfigNames">Stream Process</Setting>
   </Item>
   <Item Name="Passthrough Operation" Category="" ClassName="EnsLib.File.PassthroughOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/opt/transform/practice</Setting>
+    <Setting Target="Host" Name="Filename">output_%f_%Q%!+(_a)</Setting>
   </Item>
   <Item Name="Stream Process" Category="" ClassName="dc.iris.streamProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
