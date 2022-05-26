@@ -96,7 +96,17 @@ http://127.0.0.1:57700/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESPACE
 All PASSED
 ```
 
-I use Python to get a maximum value for Quantity from a CSV file:
+## How test-data is created
+
+MakeFile creates test-data by copying a sample file and renaming the copy to a unique filename allowing the process to be repeated as many times as the number of files you want to create. The sample file contains delimited data. I use a DTL to transform a delimited record into fixed width record and also update the SSN data field.
+
+Another process utilizes a shell script that creates a new test file. I use a BPL to update certain records.
+
+## UnitTest explained
+
+TestDemo counts the files matching RecordMap_FixedWidth* before calling MakeFile with parameter 2 to create two files. The unit test waits 15 seconds to allow the Interoperability Production to complete and it counts the files matching RecordMap_FixedWidth* to confirm the desired number of files have been added.
+
+TestDemo2 counts the files matching DE* before calling the shell script with parameter 2 to create two files. I added a BPL where I use Python to get a maximum value for Quantity from a CSV file:
 ```
 USER>set q=##class(dc.python.test).MaxQuantity()
 
