@@ -7,7 +7,7 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 ## Installation ZPM
 
 ```
-USER>zpm "install test-data"
+zpm "install test-data"
 ```
 
 ## Installation docker
