@@ -39,7 +39,6 @@ Open IRIS terminal:
 
 ```
 docker-compose exec iris iris session iris
-USER>
 ```
 
 The first command needs to be run once
@@ -54,8 +53,9 @@ Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
 
 ```
+====================================
 Directory: /opt/unittests/test-data/
-```
+====================================
   test-data begins ...
 Load of directory started on 05/26/2022 01:57:03 '*.xml;*.XML;*.cls;*.mac;*.int;
 *.inc;*.CLS;*.MAC;*.INT;*.INC'
@@ -94,7 +94,7 @@ Load finished successfully.
 Use the following URL to view the result:
 http://127.0.0.1:57700/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESPACE=USER
 All PASSED
-
+```
 
 I use Python to get a maximum value for Quantity from a CSV file:
 ```
