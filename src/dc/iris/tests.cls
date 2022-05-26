@@ -35,7 +35,7 @@ Method TestDemo()
 Method TestDemo2()
 {
 	Set tDir = "/opt/transform/practice"
-	Set tFilesDemo2 = "DE*"
+	Set tFilesDemo2 = "output_DE*"  // filename after BPL
 	Set tCountBefore = ##class(dc.iris.util).FilesCount(tDir,tFilesDemo2)
 	Do ..LogMessage(tCountBefore_" "_tFilesDemo2_" files before.")
 	Set tSC = ##class(dc.iris.facture).TestProductDefined()
@@ -45,9 +45,9 @@ Method TestDemo2()
 	Set tSC = ##class(dc.iris.facture).Manufacture(2,tMakeFilesQuantity)
 	Do $$$AssertEquals(tSC,1, "Manufacture")
 	// Allow time to transform file(s)
-	Hang 1
+	Hang 15
 	Set tCountAfter = ##class(dc.iris.util).FilesCount(tDir,tFilesDemo2)
-	Do ..LogMessage(tCountAfter_" "_tFilesDemo2_" files after 1 second.")
+	Do ..LogMessage(tCountAfter_" "_tFilesDemo2_" files after 15 seconds.")
 	Do $$$AssertEquals(tCountAfter,(tCountBefore+tMakeFilesQuantity),"Files count")
 }
 
