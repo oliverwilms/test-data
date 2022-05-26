@@ -53,9 +53,9 @@ Since we are using .cls files rather than XML files, we must supply the /loadudl
 Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
 
-===============================================================================
+```
 Directory: /opt/unittests/test-data/
-===============================================================================
+```
   test-data begins ...
 Load of directory started on 05/26/2022 01:57:03 '*.xml;*.XML;*.cls;*.mac;*.int;
 *.inc;*.CLS;*.MAC;*.INT;*.INC'
