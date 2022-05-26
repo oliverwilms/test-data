@@ -15,19 +15,19 @@ zpm "install test-data"
 Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/oliverwilms/test-data.git
+git clone https://github.com/oliverwilms/test-data.git
 ```
 
 Open the terminal in this directory and run:
 
 ```
-$ docker-compose build
+docker-compose build
 ```
 
 3. Run the IRIS container with your project:
 
 ```
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 ## Online Demo
@@ -38,7 +38,7 @@ You can find online demo here - [demo](https://test-data.demo.community.intersys
 Open IRIS terminal:
 
 ```
-$ docker-compose exec iris iris session iris
+docker-compose exec iris iris session iris
 USER>
 ```
 
