@@ -17,16 +17,42 @@ ClassMethod Today() As %Status
   Return sc
 }
 
-ClassMethod MaxQuantity() As %Status
+ClassMethod MaxQuantity() As %String
 {
-  Set sc = $$$OK
-  Set td = ##class(%SYS.Python).Import("test-data")
-  Set file = $System.Util.ManagerDirectory()_"data/QuantityOnHandSync.csv"
-  Set maxq = td.maxqty(file)
+  Set maxq = ""
+  Try {
+    Set td = ##class(%SYS.Python).Import("test-data")
+    Set file = $System.Util.ManagerDirectory()_"data/QuantityOnHandSync.csv"
+    Set maxq = td.maxqty(file)
+  }
+  Catch exp {
+    IF 1=exp.%IsA("%Exception.SystemException") {
+      WRITE "System exception",!
+      WRITE "Name: ",$ZCVT(exp.Name,"O","HTML"),!
+      WRITE "Location: ",exp.Location,!
+      WRITE "Code: "
+    }
+    ELSEIF 1=exp.%IsA("%Exception.SQL") {
+      WRITE "SQL exception",!
+      WRITE "SQLCODE: "
+    }
+    ELSEIF 1=exp.%IsA("%Exception.StatusException") {
+      WRITE "%Status exception",!
+      DO $SYSTEM.Status.DisplayError(exp.AsStatus())
+    }
+    ELSEIF 1=exp.%IsA("%Exception.General") {
+      WRITE "General ObjectScript exception",!
+      WRITE "Name: ",$ZCVT(exp.Name,"O","HTML"),!
+      WRITE "Code: "
+    }
+    ELSE { WRITE "Some other type of exception",! }
+    WRITE exp.Code,!
+    WRITE "Data: ",exp.Data,!     
+  }
   Return maxq
 }
 
-ClassMethod Source() As %Status
+ClassMethod Source() As %String
 {
   Set sc = $$$OK
   Set td = ##class(%SYS.Python).Import("test-data")
@@ -34,7 +60,7 @@ ClassMethod Source() As %Status
   Return source
 }
 
-ClassMethod Target() As %Status
+ClassMethod Target() As %String
 {
   Set sc = $$$OK
   Set td = ##class(%SYS.Python).Import("test-data")
