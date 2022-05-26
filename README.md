@@ -53,11 +53,8 @@ Since we are using .cls files rather than XML files, we must supply the /loadudl
 USER>Do ##class(%UnitTest.Manager).RunTest("test-data","/loadudl")
 ```
 
-Another example shows how to work with files and use pandas and numpy libs. 
-It calculates the mean age of Titanic passengers:
-
+I use Python to get a maximum value for Quantity from a CSV file:
 ```
-USER>d ##class(dc.python.test).TitanicMeanAge()
-mean age=29.69911764705882
+USER>set q= ##class(dc.python.test).MaxQuantity()
 
 ```
