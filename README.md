@@ -30,6 +30,9 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
+## Online Demo
+You can find online demo here - [demo](https://test-data.demo.community.intersystems.com/csp/sys/UtilHome.csp)
+
 ## How to work with it
 
 Open IRIS terminal:
