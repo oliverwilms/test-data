@@ -100,11 +100,9 @@ All PASSED
 
 ![screenshot](https://github.com/oliverwilms/bilder/blob/main/test-data.png)
 
-I used to copy a sample file for testing. The downside was I could only have one copy.
+The dc_iris.products table controls the test data creation. I used to copy a sample file for testing. The downside was I could only have one copy. The first product gets created by executing MakeFile. It copies a sample file and renames the copy to a unique filename allowing the process to be repeated as many times as the number of files you want to create. The sample file contains delimited data. The copies are placed in the TargetPath. I use a DTL to transform a delimited record into fixed width record and also update the SSN data field.
 
-MakeFile creates test-data by copying a sample file and renaming the copy to a unique filename allowing the process to be repeated as many times as the number of files you want to create. The sample file contains delimited data. I use a DTL to transform a delimited record into fixed width record and also update the SSN data field.
-
-Another process utilizes a shell script that creates a new test file. I use a BPL to update certain records.
+The second product executes RunScript. It utilizes a shell script that creates a new test file. I use a BPL to update certain records in the test file.
 
 ## UnitTest explained
 
