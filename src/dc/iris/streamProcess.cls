@@ -35,7 +35,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign name="Record" property="context.Record" value="$Piece(context.String,context.Delim,context.Position)" action="set" xpos='200' ypos='350' />
 <switch name='Segment Type' xpos='200' ypos='550' xend='200' yend='1000' >
 <case condition='$Piece(context.Record,"^",1)="LIN"' name='LIN' >
-<assign name="tQty" property="tQty" value="##class(dc.python.test).Today()" action="set" xpos='335' ypos='700' >
+<assign name="tQty" property="tQty" value="##class(dc.python.test).MaxQuantity()" action="set" xpos='335' ypos='700' >
 <annotation><![CDATA[Use Python to get this value]]></annotation>
 </assign>
 <assign name="Record" property="context.Record" value="$Piece(context.Record,&quot;^&quot;,1,4)_&quot;^&quot;_tQty_&quot;^&quot;_$Piece(context.Record,&quot;^&quot;,6,*)" action="set" xpos='335' ypos='900' />
