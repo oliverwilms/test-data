@@ -98,6 +98,8 @@ All PASSED
 
 ## How test-data is created
 
+![screenshot](https://github.com/oliverwilms/bilder/blob/main/test-data.png)
+
 I used to copy a sample file for testing. The downside was I could only have one copy.
 
 MakeFile creates test-data by copying a sample file and renaming the copy to a unique filename allowing the process to be repeated as many times as the number of files you want to create. The sample file contains delimited data. I use a DTL to transform a delimited record into fixed width record and also update the SSN data field.
