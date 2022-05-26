@@ -21,6 +21,8 @@ COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} src src
 COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} module.xml module.xml
 COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} iris.script iris.script
 
+ENV PIP_TARGET=${ISC_PACKAGE_INSTALLDIR}/mgr/python
+
 RUN --mount=type=bind,src=.,dst=. \
   pip3 install -r requirements.txt && \
   iris start IRIS \
