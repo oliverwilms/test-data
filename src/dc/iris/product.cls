@@ -248,7 +248,8 @@ ClassMethod RunScript(
 		Set tSC = $$$ERROR($$$GeneralError,"No product defined")
 		Quit tSC
 	}
-	Set pCmd = "/irisrun/repo/demo.sh"
+	//Set pCmd = "/irisrun/repo/demo.sh"  // This does NOT work in Online Demo
+	Set pCmd = "/opt/irisbuild/demo.sh"
 	Set pNumberOfFiles = $Get(pQuantity,1)
 	Set pRandom = "random"
 	Set pOutput = "/opt/transform/practice/"
