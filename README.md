@@ -33,7 +33,7 @@ docker-compose up -d
 ## Online Demo
 You can find online demo here - [Management Portal](https://test-data.demo.community.intersystems.com/csp/sys/UtilHome.csp)
 
-[webterminal](https://test-data.demo.community.intersystems.com/csp/sys/terminal/)
+[webterminal](https://test-data.demo.community.intersystems.com/terminal/)
 
 
 ## test-data Unit Tests
