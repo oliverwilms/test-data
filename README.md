@@ -111,7 +111,7 @@ The second product executes RunScript. It utilizes a shell script that creates a
 
 TestDemo counts the files matching RecordMap_FixedWidth* before calling MakeFile with parameter 2 to create two files. The unit test waits 15 seconds to allow the Interoperability Production to complete and it counts the files matching RecordMap_FixedWidth* to confirm the desired number of files have been added.
 
-TestDemo2 counts the files matching DE* before calling the shell script with parameter 2 to create two files. I added a BPL where I use Python to get a maximum value for Quantity from a CSV file:
+TestDemo2 counts the files matching output_DE* before calling the shell script with parameter 2 to create two DE* files. There is a BPL that updates the stream representing DE files. The stream gets saved into a file named output_DE*. Within streamProcess BPL I use Python to get a maximum value for Quantity from a CSV file:
 ```
 USER>set q=##class(dc.python.test).MaxQuantity()
 
