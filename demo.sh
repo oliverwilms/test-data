@@ -10,6 +10,8 @@ if [ -z "$2" ]; then
     exit    
 fi
 
+NUMBER_OF_TEST_TO_CREATE=$1
+
 ### get date/time 
 
 if [ $2 == "random" ]; then
