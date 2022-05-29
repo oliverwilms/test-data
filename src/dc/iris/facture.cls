@@ -72,7 +72,7 @@ ClassMethod MakeFiles(
 }
 
 ClassMethod Manufacture(
-	pProductId As %String = 1,
+	pProductId As %String = 2,
 	pQuantity As %Integer = 1,
 	pDebug As %Integer = 0) As %Status
 {
@@ -85,11 +85,7 @@ ClassMethod Manufacture(
 	}
 	Set tClassName = oProduct.ClassName
 	Set tClassMethod = oProduct.MethodName
-	For tCount = 1:1:pQuantity {
-		Write:pDebug tCount,!
 		Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
-		Continue
-	}
 	Set oProduct = ""
 	Quit tSC
 }
