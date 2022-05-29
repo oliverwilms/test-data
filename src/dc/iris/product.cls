@@ -9,6 +9,16 @@ Property ClassName As %String;
 
 Property MethodName As %String;
 
+Property RunCmd As %String;
+
+Property RunParam1 As %String;
+
+Property RunParam2 As %String;
+
+Property RunParam3 As %String;
+
+Property RunParam4 As %String;
+
 Property SampleFile As %String;
 
 Property TargetPath As %String;
@@ -248,17 +258,16 @@ ClassMethod RunScript(
 		Set tSC = $$$ERROR($$$GeneralError,"No product defined")
 		Quit tSC
 	}
-	//Set pCmd = "/irisrun/repo/demo.sh"  // This does NOT work in Online Demo
-	Set pCmd = "/opt/irisbuild/demo.sh"
+	Set pCmd = oProduct.RunCmd
 	Set pNumberOfFiles = $Get(pQuantity,1)
-	Set pRandom = "random"
-	Set pOutput = "/opt/transform/practice/"
-	Set pTemplate = "/usr/irissys/mgr/data/"
 	Set args=4
- 	Set args(1) = pNumberOfFiles
-	Set args(2) = pRandom
- 	Set args(3) = pOutput
- 	Set args(4) = pTemplate
+ 	Set args(1) = oProduct.RunParam1
+	Set args(2) = oProduct.RunParam2
+ 	Set args(3) = oProduct.RunParam3
+ 	Set args(4) = oProduct.RunParam4
+	For ii = 1:1:args {
+		If (args(ii) = "$Qty") Set args(ii) = pNumberOfFiles
+	}
 	Set tReturn = $ZF(-100,"/SHELL",pCmd,.args)
 	Quit tSC
 }
@@ -279,62 +288,37 @@ Storage Default
 <Value>MethodName</Value>
 </Value>
 <Value name="5">
-<Value>SampleFile</Value>
+<Value>RunCmd</Value>
 </Value>
 <Value name="6">
-<Value>WorkFile</Value>
+<Value>RunParam1</Value>
 </Value>
 <Value name="7">
-<Value>WorkPath</Value>
+<Value>RunParam2</Value>
 </Value>
 <Value name="8">
+<Value>RunParam3</Value>
+</Value>
+<Value name="9">
+<Value>RunParam4</Value>
+</Value>
+<Value name="10">
+<Value>SampleFile</Value>
+</Value>
+<Value name="11">
 <Value>TargetPath</Value>
+</Value>
+<Value name="12">
+<Value>WorkFile</Value>
+</Value>
+<Value name="13">
+<Value>WorkPath</Value>
 </Value>
 </Data>
 <DataLocation>^dc.iris.productD</DataLocation>
 <DefaultData>productDefaultData</DefaultData>
-<ExtentSize>1</ExtentSize>
 <IdLocation>^dc.iris.productD</IdLocation>
 <IndexLocation>^dc.iris.productI</IndexLocation>
-<Property name="%%CLASSNAME">
-<AverageFieldSize>2</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="%%ID">
-<AverageFieldSize>3</AverageFieldSize>
-<Selectivity>1</Selectivity>
-</Property>
-<Property name="ClassName">
-<AverageFieldSize>17</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="MethodName">
-<AverageFieldSize>10</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="Name">
-<AverageFieldSize>6</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="SampleFile">
-<AverageFieldSize>52</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="TargetPath">
-<AverageFieldSize>26</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="WorkFile">
-<AverageFieldSize>20</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<Property name="WorkPath">
-<AverageFieldSize>7</AverageFieldSize>
-<Selectivity>100.0000%</Selectivity>
-</Property>
-<SQLMap name="IDKEY">
-<BlockCount>-4</BlockCount>
-</SQLMap>
 <StreamLocation>^dc.iris.productS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
