@@ -6,7 +6,7 @@ ClassMethod DefineProduct() As %Status
 	Set tSC = ##class(dc.iris.product).%DeleteExtent()
 	Set oProduct = ##class(dc.iris.product).%New()
 	Set oProduct.ClassName = "dc.iris.product"
-	Set oProduct.MethodName = "MakeFile"
+	Set oProduct.MethodName = "MakeFiles"
 	Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
 	Set oProduct.Name = "Demo"
 	Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
@@ -67,11 +67,7 @@ ClassMethod MakeFiles(
 	}
 	Set tClassName = oProduct.ClassName
 	Set tClassMethod = oProduct.MethodName
-	For tCount = 1:1:pQuantity {
-		Write:pDebug tCount,!
-		Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct)
-		Continue
-	}
+	Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
 	Set oProduct = ""
 	Quit tSC
 }
