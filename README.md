@@ -95,8 +95,7 @@ Load finished successfully.
   test-data passed
 
 Use the following URL to view the result:
-http://192.168.48.2:52773/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESP
-ACE=USER
+http://127.0.0.1:57700/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESPACE=USER
 All PASSED
 ```
 
