@@ -30,10 +30,15 @@ ClassMethod DefineProductScript(
 	Do:pDebug $System.OBJ.Dump(oProduct)
 	Set oProduct.ClassName = "dc.iris.product"
 	Set oProduct.MethodName = "RunScript"
-	//Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
+	Set oProduct.RunCmd = "/opt/irisbuild/demo.sh"
+	Set pRandom = "random"
+	Set pOutput = "/opt/transform/practice/"
+	Set pTemplate = "/usr/irissys/mgr/data/"
+ 	Set oProduct.RunParam1 = "$Qty"
+	Set oProduct.RunParam2 = pRandom
+ 	Set oProduct.RunParam3 = pOutput
+ 	Set oProduct.RunParam4 = pTemplate
 	Set oProduct.Name = pName
-	//Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
-	//Set oProduct.WorkPath = ##class(%File).GetDirectory(oProduct.WorkFile)
 	//Set oProduct.TargetPath = "/opt/transform/practice/"
 	Set tSC = oProduct.%Save()
 	Quit tSC
@@ -85,7 +90,7 @@ ClassMethod Manufacture(
 	}
 	Set tClassName = oProduct.ClassName
 	Set tClassMethod = oProduct.MethodName
-		Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
+	Set tSC = $ClassMethod(tClassName,tClassMethod,oProduct,pQuantity)
 	Set oProduct = ""
 	Quit tSC
 }
