@@ -113,6 +113,28 @@ TestDemo counts the files matching RecordMap_FixedWidth* before calling MakeFile
 
 TestDemo2 counts the files matching output_DE* before calling the shell script with parameter 2 to create two DE* files. There is a BPL that updates the stream representing DE files. The stream gets saved into a file named output_DE*. Within streamProcess BPL I use Python to get a maximum value for Quantity from a CSV file:
 ```
-USER>set q=##class(dc.python.test).MaxQuantity()
+set q=##class(dc.python.test).MaxQuantity()
+```
+## Order some test-data
 
+If you want to order 5 files of the first type and 6 files of the second type, enter the command below in IRIS terminal:
+
+```
+w ##class(dc.iris.testdata).order(5,6)
+```
+
+```
+irisowner@52ca366da3d4:/opt/transform/practice$ ls -ltr
+total 44
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 RecordMap_FixedWidth_Output_from_RecordMap_Delimited_Sample.txt_2022-05-30_00.49.43.731
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 RecordMap_FixedWidth_Output_from_RecordMap_Delimited_Sample.txt_2022-05-30_00.49.43.731_a1
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 RecordMap_FixedWidth_Output_from_RecordMap_Delimited_Sample.txt_2022-05-30_00.49.43.731_a2
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 RecordMap_FixedWidth_Output_from_RecordMap_Delimited_Sample.txt_2022-05-30_00.49.43.732
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 RecordMap_FixedWidth_Output_from_RecordMap_Delimited_Sample.txt_2022-05-30_00.49.43.732_a1
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00123510001_2022-05-30_00.49.48.178
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00317850002_2022-05-30_00.49.48.186
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00150150003_2022-05-30_00.49.48.192
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00066470004_2022-05-30_00.49.48.198
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00048760005_2022-05-30_00.49.48.205
+-rwxrw-r--. 1 irisowner irisowner 346 May 30 00:49 output_DEMO-00167540006_2022-05-30_00.49.48.212
 ```
