@@ -8,6 +8,10 @@ ClassMethod DefineProduct() As %Status
 	Set oProduct.ClassName = "dc.iris.product"
 	Set oProduct.MethodName = "MakeFiles"
 	Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
+	Set tExists = ##class(%Library.File).Exists(oProduct.SampleFile)
+	If (0 = tExists) {
+		Set oProduct.SampleFile = $ZU(12)_"RecordMap_Delimited_Sample.txt"
+	}
 	Set oProduct.Name = "Demo"
 	Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
 	Set oProduct.WorkPath = ##class(%File).GetDirectory(oProduct.WorkFile)
