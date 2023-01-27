@@ -10,7 +10,7 @@ ClassMethod DefineProduct() As %Status
 	Set oProduct.SampleFile = "/opt/irisbuild/data/RecordMap_Delimited_Sample.txt"
 	Set tExists = ##class(%Library.File).Exists(oProduct.SampleFile)
 	If (0 = tExists) {
-		Set oProduct.SampleFile = $ZU(12)_"RecordMap_Delimited_Sample.txt"
+		Set oProduct.SampleFile = $ZU(12)_"data/RecordMap_Delimited_Sample.txt"
 	}
 	Set oProduct.Name = "Demo"
 	Set oProduct.WorkFile = "/tmp/workfile."_oProduct.Name
