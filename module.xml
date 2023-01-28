@@ -12,6 +12,7 @@
       <Resource Name="dc.python.PKG"/>
       <FileCopy Name="python/" Target="${mgrdir}python/"/>
       <FileCopy Name="data/" Target="${mgrdir}data/"/>
+      <FileCopy Name="demo.sh" Target="${mgrdir}data/"/>
     </Module>
   </Document>
 </Export>
