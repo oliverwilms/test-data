@@ -19,7 +19,7 @@ Property RunParam3 As %String;
 
 Property RunParam4 As %String;
 
-Property SampleFile As %String;
+Property SampleFile As %String(MAXLEN = 255);
 
 Property TargetPath As %String;
 
