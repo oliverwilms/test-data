@@ -98,8 +98,16 @@ ClassMethod Manufacture(
 ClassMethod TestProductDefined() As %Status
 {
 	Set tSC = ..TestProductDefined1()
+	If $$$ISERR(tSC) {
+		Write $System.Status.GetErrorText(tSC)
+		Quit tSC
+	}
 	Set tSC = ..TestProductDefined2()
-	Quit tSC
+	If $$$ISERR(tSC) {
+		Write $System.Status.GetErrorText(tSC)
+		Quit tSC
+	}
+	Quit $$$OK
 }
 
 ClassMethod TestProductDefined1() As %Status
