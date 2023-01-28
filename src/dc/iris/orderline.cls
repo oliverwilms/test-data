@@ -16,7 +16,8 @@ ClassMethod beginLine(pId As %String = "") As %Status
 	Set tNOW = $NOW()
 	Set oLine = ..%OpenId(pId)
 	If (0 = $IsObject(oLine)) {
-		Set tSC = $$$ERROR($$$GeneralError,"Error in beginLine")
+		Set tMsg = "pId = "_pId
+		Set tSC = $$$ERROR($$$GeneralError,"Error #1 in beginLine: "_tMsg)
 		Quit tSC
 	}
 	Set oLine.tsBegin = tNOW
@@ -29,7 +30,7 @@ ClassMethod beginLine(pId As %String = "") As %Status
 	Set tNOW = $NOW()
 	Set oLine = ..%OpenId(pId)
 	If (0 = $IsObject(oLine)) {
-		Set tSC = $$$ERROR($$$GeneralError,"Error in beginLine")
+		Set tSC = $$$ERROR($$$GeneralError,"Error #2 in beginLine")
 		Quit tSC
 	}
 	Set oLine.tsDone = tNOW
@@ -48,7 +49,11 @@ ClassMethod newLine(
 	Set oLine.product = pProduct
 	Set oLine.quantity = pQuantity
 	Set tSC = oLine.%Save()
-	If $$$ISERR(tSC) Quit ""
+	If $$$ISERR(tSC) {
+		Set tError = $SYSTEM.Status.GetErrorText(tSC)
+		Write tError,!
+		Quit ""
+	}
 	Set tID = oLine.%Id()
 	Quit tID
 }
