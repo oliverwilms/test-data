@@ -6,15 +6,23 @@ ClassMethod order(
 	pQuantity2 As %Integer = 1) As %Status
 {
 	Set tSC = ##class(dc.iris.facture).TestProductDefined()
+	If $$$ISERR(tSC) {
+		Write $System.Status.GetErrorText(tSC),!
+		Quit tSC
+	}
 	Set tOrder = ##class(dc.iris.order).newOrder("Adam Ant")
 	Write tOrder,!
 	Set tSC = ##class(dc.iris.orderline).processNewLine(tOrder,1,pQuantity1)
-	Write $System.Status.GetErrorText(tSC)
-	If $$$ISERR(tSC) Quit tSC
+	If $$$ISERR(tSC) {
+		Write $System.Status.GetErrorText(tSC),!
+		Quit tSC
+	}
 	Set tSC = ##class(dc.iris.orderline).processNewLine(tOrder,2,pQuantity2)
-	Write $System.Status.GetErrorText(tSC)
-	If $$$ISERR(tSC) Quit tSC
-	Quit tSC
+	If $$$ISERR(tSC) {
+		Write $System.Status.GetErrorText(tSC),!
+		Quit tSC
+	}
+	Quit $$$OK
 }
 
 }
