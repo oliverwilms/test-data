@@ -120,7 +120,7 @@ set q=##class(dc.python.test).MaxQuantity()
 If you want to order 5 files of the first type and 6 files of the second type, enter the command below in IRIS terminal:
 
 ```
-w ##class(dc.iris.testdata).order(5,6)
+do ##class(dc.iris.testdata).order(5,6)
 ```
 
 ```
